@@ -1,0 +1,31 @@
+формат имени SQL-файла: имя_роутерахххххххххххх.sql
+  "имя_роутера" - название php-файла(роутера) в котором SQL будет вызываться, например equipment_current.sql или equipment_by_date.sql для equipment.php
+
+параметры в SQL-файл передавать через синтаксис ?Var
+  если параметр строковый - надо заключать его в одинарные кавычки '?Var'
+  если параметр DataTime - надо заключать его в одинарные кавычки '?VarDate'
+  дату в параметры передаем по формату dd.mm.yyyy - в sql будет:
+    set @d1 = convert(datetime, '?date', 104) - тут вместо ?date подставится dd.mm.yyyy, например 29.12.2021
+
+в SQL-запросе:
+  используем ISNULL(условие, что_отображать) - для того чтобы в результате не было NULL, пример: ISNULL( CONVERT(VARCHAR(10), a_sost_oborud.vremya_izm_sost, 104) + ' ' + CONVERT(VARCHAR(5), a_sost_oborud.vremya_izm_sost, 108), '') as dateTimeStart
+  дату время в результате запроса надо получать dd.mm.yyyy hh:mm, для этого используем CONVERT(...), пример: CONVERT(VARCHAR(10), a_sost_oborud.vremya_izm_sost, 104) + ' ' + CONVERT(VARCHAR(5), a_sost_oborud.vremya_izm_sost, 108)
+
+---
+
+словарь:
+  GES - ГЭС
+  TEC - ТЭЦ
+  ByID - по коду
+  State - состояние
+  List - список
+  Object - объект
+  Name - наименование
+  Date - дата
+  Time - время
+  Start - начало
+  End - конец
+  ID - код
+  current - текущий
+  now - сейчас
+  equipment - оборудование

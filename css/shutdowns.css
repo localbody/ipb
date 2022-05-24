@@ -1,0 +1,101 @@
+table {
+  border-spacing: 0;
+  border-top: 1px solid var(--border-grey);
+  border-bottom: 1px solid var(--border-grey);
+  border-left: 1px solid var(--border-grey);
+  margin-bottom: 2em;
+}
+
+table tbody tr {
+  background-color: var(--background-white);
+}
+
+.table--fit {
+  width: fit-content;
+}
+
+.table--fit td {
+  padding: 0.5em;
+}
+
+.table--centered-data {
+  text-align: center;
+}
+
+.table--striped tbody tr:nth-child(2n) {
+  background-color: var(--table-striped);
+}
+
+.table--centered-data td {
+  vertical-align: middle;
+}
+
+.caption,
+table caption {
+  font-size: 2em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+td {
+  padding: 0.25em;
+  border-bottom: 1px solid var(--border-grey);
+  border-right: 1px solid var(--border-grey);
+  line-height: 1.25em;
+}
+
+.columns--expanded {
+  cursor: pointer;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table--vertical-header tbody td:first-child {
+  font-weight: bold;
+}
+
+thead {
+  background-color: var(--background-blue-alpha);
+  color: var(--white);
+}
+
+thead td {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.25em;
+}
+
+.tr--total {
+  font-weight: bold;
+}
+
+.tr--fill {
+  background-color: var(--background-green-alpha);
+}
+
+.datetime {
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.datetime .date,
+.date .time {
+  display: block;
+}
+
+.show-all-columns {
+  margin-left: 1em;
+  display: flex;
+  align-items: center;
+  font-size: 0.5em;
+  color: var(--text-red);
+  cursor: pointer;
+}
+
+.show-all-columns input {
+  height: 1.25em;
+  width: 1.25em;
+  margin-right: 0.5em;
+}

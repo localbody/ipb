@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .wrapper {
+        display: grid;
+        grid-template-areas:
+          'header header side'
+          'body body side'
+          'body body side'
+          'foo foo side';
+        /* grid-template-columns: 1fr 5fr; */
+      }
+
+      @media screen and (max-width: 400px) {
+        .wrapper {
+          grid-template-areas:
+            'header header'
+            'body side'
+            'side side'
+            'foo side';
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .wrapper {
+          grid-template-areas:
+            'header'
+            'body'
+            'side'
+            'foo';
+        }
+      }
+
+      .header {
+        grid-area: header;
+        background-color: red;
+      }
+
+      .side {
+        grid-area: side;
+        background-color: blue;
+      }
+
+      .body {
+        grid-area: body;
+        background-color: yellow;
+      }
+
+      .foo {
+        grid-area: foo;
+        background-color: green;
+      }
+
+      thead {
+        background-color: tomato;
+      }
+    </style>
+
+    <div class="wrapper">
+      <h1>Text 111111</h1>
+
+      <h2 class="table-header">jkdjgfdgljfsdkl;jgsdkl</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <td
+              style="text-align: center; vertical-align: top"
+              colspan="2"
+              rowspan="2"
+            >
+              h1-h2 h11 h22 h1-h2 h11 h22h1-h2 h11
+            </td>
+            <td>h3</td>
+            <td rowspan="2" width="44%">h4 - h44</td>
+          </tr>
+          <tr>
+            <td width="50%">h33</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

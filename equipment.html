@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="RU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.svg" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/equipment.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="page page--with-menubar">
+      <div class="menubar">
+        <a href="index.html" class="logo"></a>
+        <button class="button popup__opener"></button>
+
+        <div class="popup">
+          <div class="popup__body">
+            <div class="popup__content">
+              <button class="button popup__closer"></button>
+              <div class="report">
+                <div class="report__period">
+                  <span>Дата</span>
+                  <input type="date" value="2022-01-01" required />
+                </div>
+
+                <div class="report__params report__param--equipment">
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param1"
+                      checked
+                    />
+                    <label class="report__param-label" for="param1"
+                      >ТЭЦ-21, ТЭЦ-22</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param2"
+                    />
+                    <label class="report__param-label" for="param2"
+                      >ТЭЦ-6, ТЭЦ-27</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param3"
+                    />
+                    <label class="report__param-label" for="param3"
+                      >ТЭЦ-9, ОТЭЦ</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param4"
+                    />
+                    <label class="report__param-label" for="param4"
+                      >РК-1, РК-2, КРТС</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param5"
+                    />
+                    <label class="report__param-label" for="param5"
+                      >ОГЭС, ТГЭС, ЧГЭС</label
+                    >
+                  </div>
+                </div>
+
+                <button class="button report__button">Показать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="links">
+          <div class="links__date-controls">
+            <span>Дата</span>
+            <button id="links__date-minis" class="links__date-minis">-</button>
+            <input
+              id="links__date-input-main"
+              class="links__date-input"
+              type="date"
+              value="2022-01-01"
+              required
+            />
+            <button id="links__date-plus" class="links__date-plus">-</button>
+            <button id="links__date-today" class="links__date-today">
+              сегодня
+            </button>
+          </div>
+          <div class="links__objects">
+            <a class="links__objects-link links__objects-link--active" href=""
+              >ТЭЦ-21, ТЭЦ-22</a
+            >
+            <a class="links__objects-link" href="">ТЭЦ-6, ТЭЦ-27</a>
+            <a class="links__objects-link" href="">ТЭЦ-9, ОТЭЦ</a>
+            <a class="links__objects-link" href="">РК-1, РК-2, КРТС</a>
+            <a class="links__objects-link" href="">ОГЭС, ТГЭС, ЧГЭС</a>
+          </div>
+        </div>
+        <div class="objects">
+          <div class="object">
+            <h2 class="object__title">ТЭЦ-21</h2>
+            <div class="sources-items">
+              <div class="sources">
+                <span class="sources__title"> ТЭЦ-21. Котлы паровые </span>
+
+                <div class="source__header">
+                  <span>№</span>
+                  <span>Состояние</span>
+                </div>
+
+                <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">1</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">2</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">текущий ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">3</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в резерве</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">4</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">текущий ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">5</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">капитальный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">6</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">аварийный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="source source--status-notinreserve">
+                  <div class="source__id">
+                    <span class="source__id-text">4</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">вне резерва</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-conservation">
+                  <div class="source__id">
+                    <span class="source__id-text">5</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">на консервации</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">9</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">средний ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">6</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">неотложный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">7</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в ремонте</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">8</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в резерве</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">12</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">одна в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">13</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">две в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">14</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">три в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">15</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">четыре в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">16</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">все в резерве</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-demount">
+                  <div class="source__id">
+                    <span class="source__id-text">17</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">демонтирован</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="wrapper wrapper--sources">
+                <div class="sources">
+                  <span class="sources__title"> ТЭЦ-21. Турбогенераторы </span>
+
+                  <div class="source__header">
+                    <span>№</span>
+                    <span>Состояние</span>
+                  </div>
+
+                  <div class="source source--status-work">
+                    <div class="source__id">
+                      <span class="source__id-text">1</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в работе</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">2</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">3</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-work">
+                    <div class="source__id">
+                      <span class="source__id-text">4</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в работе</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">5</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">6</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sources">
+                  <span class="sources__title">
+                    ТЭЦ-21. Котлы водогрейные и электродные
+                  </span>
+
+                  <div class="source__header">
+                    <span>№</span>
+                    <span>Состояние</span>
+                  </div>
+
+                  <div class="source source--status-work">
+                    <div class="source__id">
+                      <span class="source__id-text">1Э</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в работе</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">2В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">3В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">4Э</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">5В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text"
+                        >капитальный ремонт</span
+                      >
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">2Э</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text"
+                        >капитальный ремонт</span
+                      >
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="object">
+            <h2 class="object__title">ТЭЦ-22</h2>
+            <div class="sources-items">
+              <div class="sources">
+                <span class="sources__title"> ТЭЦ-22. Котлы паровые </span>
+
+                <div class="source__header">
+                  <span>№</span>
+                  <span>Состояние</span>
+                </div>
+
+                <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">1</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">2</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">текущий ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">3</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в резерве</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">4</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">текущий ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">5</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">капитальный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">6</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">аварийный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">7</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">вне резерва</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-conservation">
+                  <div class="source__id">
+                    <span class="source__id-text">8</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">на консервации</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">9</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">средний ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">10</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">неотложный ремонт</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-repair">
+                  <div class="source__id">
+                    <span class="source__id-text">11</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">в ремонте</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">12</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">одна в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">13</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">две в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">14</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">три в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-work">
+                  <div class="source__id">
+                    <span class="source__id-text">15</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">четыре в работе</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-reserve">
+                  <div class="source__id">
+                    <span class="source__id-text">16</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">все в резерве</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end">
+                        <span class="date">01.12.2023</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="source source--status-demount">
+                  <div class="source__id">
+                    <span class="source__id-text">17</span>
+                  </div>
+                  <div class="source__status">
+                    <span class="source__status-text">демонтирован</span>
+                    <div class="source__status-period">
+                      <span class="source__status-start">
+                        <span class="date">31.01.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </span>
+                      <span class="source--period-arrow"></span>
+                      <span class="source__status-end"></span>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="wrapper wrapper--sources">
+                <div class="sources">
+                  <span class="sources__title"> ТЭЦ-22. Турбогенераторы </span>
+
+                  <div class="source__header">
+                    <span>№</span>
+                    <span>Состояние</span>
+                  </div>
+
+                  <div class="source source--status-work">
+                    <div class="source__id">
+                      <span class="source__id-text">1</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в работе</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">2</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">3</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">4</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">
+                          <span class="date">01.12.2023</span>
+                          <span class="hour-minutes">23:59</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sources">
+                  <span class="sources__title">
+                    ТЭЦ-22. Котлы водогрейные и электродные
+                  </span>
+
+                  <div class="source__header">
+                    <span>№</span>
+                    <span>Состояние</span>
+                  </div>
+
+                  <div class="source source--status-work">
+                    <div class="source__id">
+                      <span class="source__id-text">1Э</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в работе</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">2В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="source source--status-reserve">
+                    <div class="source__id">
+                      <span class="source__id-text">3В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">в резерве</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">4Э</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text">текущий ремонт</span>
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="source source--status-repair">
+                    <div class="source__id">
+                      <span class="source__id-text">5В</span>
+                    </div>
+                    <div class="source__status">
+                      <span class="source__status-text"
+                        >капитальный ремонт</span
+                      >
+                      <div class="source__status-period">
+                        <span class="source__status-start">
+                          <span class="date">31.01.2022</span>
+                          <span class="hour-minutes">00:00</span>
+                        </span>
+                        <span class="source--period-arrow"></span>
+                        <span class="source__status-end">11.12.2022 23:59</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

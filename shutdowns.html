@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.svg" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/shutdowns.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="page page--with-menubar">
+      <div class="menubar">
+        <a href="index.html" class="logo"></a>
+        <button class="button popup__opener"></button>
+
+        <div class="popup">
+          <div class="popup__body">
+            <div class="popup__content">
+              <button class="button popup__closer"></button>
+              <div class="report">
+                <div class="report__period">
+                  <span>Период с</span>
+                  <input type="date" value="2022-01-01" />
+                  <input type="time" value="00:00" />
+                  <span>по</span>
+                  <input type="date" value="2022-01-01" />
+                  <input type="time" value="23:59" />
+                </div>
+
+                <div class="report__params">
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param1"
+                      checked
+                    />
+                    <label class="report__param-label" for="param1"
+                      >Аварийные отключения в основной сети</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param2"
+                    />
+                    <label class="report__param-label" for="param2"
+                      >Аварийные отключения теплотехнического
+                      оборудования</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param3"
+                    />
+                    <label class="report__param-label" for="param3"
+                      >Аварийные отключения в тепловой сети</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param4"
+                    />
+                    <label class="report__param-label" for="param4"
+                      >Количество отключений (обобщенные данные)</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param5"
+                    />
+                    <label class="report__param-label" for="param5"
+                      >Причины отключений ВЛ 35-750 кВ</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param6"
+                    />
+                    <label class="report__param-label" for="param6"
+                      >Отключения линий по филиалам</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param7"
+                    />
+                    <label class="report__param-label" for="param7"
+                      >Суммарно в электрических сетях аварийно
+                      отключались</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param8"
+                    />
+                    <label class="report__param-label" for="param8"
+                      >Показатели непрерывности электроснабжения (основная и
+                      распределительная сети)</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param9"
+                    />
+                    <label class="report__param-label" for="param9"
+                      >Анализ аварийных отключений в распредсетях</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-checkbox"
+                      type="checkbox"
+                      name=""
+                      id="param10"
+                    />
+                    <label class="report__param-label" for="param10"
+                      >Аварийные отключения в распредсетях</label
+                    >
+                  </div>
+                </div>
+
+                <button class="button report__button">Показать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <table class="table--shutdowns-main-network table--centered-data">
+          <caption>
+            <div class="wrapper wrapper--flex-center">
+              <span
+                >Аварийные отключения в основной сети c 23.04.2022 по
+                29.04.2022</span
+              >
+              <div class="show-all-columns">
+                <input type="checkbox" name="" id="showAllColumns" />
+                <label id="labelShowAllColumns" for="showAllColumns"
+                  >показать все колонки</label
+                >
+              </div>
+            </div>
+          </caption>
+
+          <thead>
+            <tr>
+              <td rowspan="2">#</td>
+              <td class="font--small" rowspan="2">Филиал</td>
+              <td colspan="3">Дата и время</td>
+              <td rowspan="2">Линия</td>
+              <td rowspan="2">
+                Подстанция (станция)<br /><span class="font--small"
+                  >Присоединение</span
+                >
+              </td>
+              <!-- <td rowspan="2">Присоединение</td> -->
+              <td rowspan="2">Работа защит</td>
+              <td rowspan="2">Работа АПВ, АВР, ДА</td>
+              <td rowspan="2">Показания ФИП U, кВ, I, кА</td>
+              <td rowspan="2">Поврежденный участок</td>
+              <td rowspan="2">Причина</td>
+              <td rowspan="2">ПС</td>
+              <td rowspan="2">ВЛ</td>
+              <td rowspan="2">ТП</td>
+              <td data-columns="16, 17, 18, 19" class="columns--expanded">
+                НП
+              </td>
+              <td rowspan="2">Ферм</td>
+              <td rowspan="2">Котельных</td>
+              <td rowspan="2">Недоотпуск энергии, кВт·ч</td>
+              <td rowspan="2">Примечание</td>
+            </tr>
+            <tr>
+              <td class="font--small">отключения</td>
+              <td class="font--small">включения</td>
+              <td class="font--small">включения всех потребителей</td>
+              <td>сумма</td>
+              <td class="td--expanded hide">до&nbsp;50</td>
+              <td class="td--expanded hide">от&nbsp;50 до&nbsp;200</td>
+              <td class="td--expanded hide">от&nbsp;200 до&nbsp;1000</td>
+              <td class="td--expanded hide">от&nbsp;1000</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>БЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td>Октябрь-Глуск(откл. 1-й раз)</td>
+              <td>Глуск</td>
+              <!-- <td></td> -->
+              <td>2 ст. НТЗНП</td>
+              <td>АПВ успешное</td>
+              <td>ф:A 65км.</td>
+              <td>оп.145 ф.А 13,6км от ПС Глуск</td>
+              <td>Перекр. гирлянды</td>
+              <td>0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>отключение со стороны ПС Октябрь</td>
+            </tr>
+
+            <tr class="tr--fill">
+              <td>2</td>
+              <td>МЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td>№2Могилев330-Могилев220(откл. 2-й раз)</td>
+              <td>
+                Могилев330<br /><span class="font--small"
+                  >ВР-110Могилев220№2</span
+                >
+              </td>
+              <!-- <td>ВР-110Могилев220№2</td> -->
+              <td>1 ст. ДЗ, 1 ст. ТО НП</td>
+              <td>АПВ успешное</td>
+              <td>ф:A 10,57км.</td>
+              <td>ПС Литейная (ОАО "Могилевлифтмаш"), включение</td>
+              <td>Повр. на потребит. участке ВЛ</td>
+              <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>На момент откл. Т-1 ПС Литейная был в ремонте</td>
+            </tr>
+            <tr class="tr--fill">
+              <td></td>
+              <td>МЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td></td>
+              <td>
+                Могилев220<br /><span class="font--small"
+                  >ВВ-110Могилев330№2</span
+                >
+              </td>
+              <!-- <td>ВВ-110Могилев330№2</td> -->
+              <td>2 ст. НТЗНП</td>
+              <td>АПВ успешное</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="tr--fill">
+              <td></td>
+              <td>МЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td></td>
+              <td>Литейная</td>
+              <!-- <td></td> -->
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>3</td>
+              <td>25</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>250</td>
+              <td>из-за линии: №2Могилев330-Могилев220</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td>БЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td>Октябрь-Глуск(откл. 1-й раз)</td>
+              <td>Глуск</td>
+              <!-- <td></td> -->
+              <td>2 ст. НТЗНП</td>
+              <td>АПВ успешное</td>
+              <td>ф:A 65км.</td>
+              <td>оп.145 ф.А 13,6км от ПС Глуск</td>
+              <td>Перекр. гирлянды</td>
+              <td>0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>отключение со стороны ПС Октябрь</td>
+            </tr>
+            <tr class="tr--fill">
+              <td>4</td>
+              <td>МЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td>№2Могилев330-Могилев220(откл. 2-й раз)</td>
+              <td>
+                Могилев330<br /><span class="font--small"
+                  >ВР-110Могилев220№2</span
+                >
+              </td>
+              <!-- <td>ВР-110Могилев220№2</td> -->
+              <td>1 ст. ДЗ, 1 ст. ТО НП</td>
+              <td>АПВ успешное</td>
+              <td>ф:A 10,57км.</td>
+              <td>ПС Литейная (ОАО "Могилевлифтмаш"), включение</td>
+              <td>Повр. на потребит. участке ВЛ</td>
+              <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>На момент откл. Т-1 ПС Литейная был в ремонте</td>
+            </tr>
+            <tr class="tr--fill">
+              <td></td>
+              <td>МЭС</td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td class="datetime">
+                <span class="date">23.04.22</span>
+                <span class="time">15:35</span>
+              </td>
+              <td></td>
+              <td>Литейная</td>
+              <!-- <td></td> -->
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>3</td>
+              <td>25</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>250</td>
+              <td>из-за линии: №2Могилев330-Могилев220</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Аварийные отключения теплотехнического оборудования
+          </caption>
+          <thead></thead>
+          <tbody>
+            <tr>
+              <td>Не было</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Аварийные отключения в тепловой сети
+          </caption>
+          <thead></thead>
+          <tbody>
+            <tr>
+              <td>Не было</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="caption">Количество отключений (обобщенные данные)</div>
+
+        <div class="columns columns--2 columns--centered">
+          <table
+            class="table--fit table--vertical-header table--centered-data table--striped"
+          >
+            <caption hidden></caption>
+            <thead>
+              <td>Наименование</td>
+              <td>Количество</td>
+              <td>Недоотпуск энергии, кВт·ч</td>
+              <td>АПВ успешное</td>
+              <td>АПВ неуспешное</td>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ВЛ-35кВ</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>ВЛ-110кВ</td>
+                <td>2</td>
+                <td>250</td>
+                <td>2</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>ВЛ-220кВ</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>ВЛ-330кВ</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>ВЛ-750кВ</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr class="tr--total">
+                <td>Всего</td>
+                <td>2</td>
+                <td>250</td>
+                <td>2</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+          <table
+            class="table--fit table--vertical-header table--centered-data table--striped"
+          >
+            <caption hidden></caption>
+            <thead>
+              <td>Наименование</td>
+              <td>Количество</td>
+              <td>Недоотпуск энергии</td>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Трансформаторы</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>СШ</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Генераторы</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Котлы паровые</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Котлы водогрейные</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <table class="table--centered-data">
+          <caption>
+            Причины отключений ВЛ 35-750 кВ
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Отключения линий по филиалам
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Суммарно в электрических сетях с 0-00 23.04.2022г. по 23-59
+            29.04.2022г. аварийно отключались
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Показатели непрерывности электроснабжения (основная и
+            распределительная сети)
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Анализ аварийных отключений в распредсетях
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+
+        <table class="table--centered-data">
+          <caption>
+            Аварийные отключения в распредсетях
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
