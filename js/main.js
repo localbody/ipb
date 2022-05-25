@@ -6,6 +6,20 @@ const popupBody = document.querySelector('.popup__body')
 const columnsExpanded = document.querySelector('.columns--expanded')
 const showAllColumns = document.getElementById('showAllColumns')
 
+function dateFormat(date, format = 'YYYYMMDD') {
+  let result = ''
+  if (format == 'YYYYMMDD') {
+    result =
+      date.getFullYear().toString() +
+      '-' +
+      (date.getMonth() + 1).toString().padStart(2, '0') +
+      '-' +
+      date.getDate().toString().padStart(2, '0')
+  }
+
+  return result
+}
+
 if (columnsExpanded) {
   // найдем колонки для скрытия/открытия
 

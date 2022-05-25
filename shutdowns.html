@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/shutdowns.css" />
-    <title>Document</title>
+    <title>Аварийные отключения</title>
   </head>
   <body>
     <div class="page page--with-menubar">
       <div class="menubar">
         <a href="index.html" class="logo"></a>
+        <h1 class="menubar__title">Аварийные отключения</h1>
         <button class="button popup__opener"></button>
 
         <div class="popup">
@@ -24,10 +25,10 @@
               <div class="report">
                 <div class="report__period">
                   <span>Период с</span>
-                  <input type="date" value="2022-01-01" />
+                  <input type="date" value="2022-01-01" required />
                   <input type="time" value="00:00" />
                   <span>по</span>
-                  <input type="date" value="2022-01-01" />
+                  <input type="date" value="2022-01-01" required />
                   <input type="time" value="23:59" />
                 </div>
 
@@ -165,7 +166,7 @@
               <div class="show-all-columns">
                 <input type="checkbox" name="" id="showAllColumns" />
                 <label id="labelShowAllColumns" for="showAllColumns"
-                  >показать все колонки</label
+                  >показать все данные</label
                 >
               </div>
             </div>

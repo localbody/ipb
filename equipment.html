@@ -9,13 +9,16 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/equipment.css" />
-    <title>Document</title>
+    <title>Оперативное состояние оборудования теплоисточников</title>
   </head>
 
   <body>
     <div class="page page--with-menubar">
       <div class="menubar">
         <a href="index.html" class="logo"></a>
+        <h1 class="menubar__title">
+          Оперативное состояние оборудования теплоисточников
+        </h1>
         <button class="button popup__opener"></button>
 
         <div class="popup">
@@ -98,27 +101,43 @@
         <div class="links">
           <div class="links__date-controls">
             <span>Дата</span>
-            <button id="links__date-minis" class="links__date-minis">-</button>
+            <button
+              id="links__date-minus"
+              class="button links__date-minus"
+            ></button>
             <input
               id="links__date-input-main"
               class="links__date-input"
               type="date"
-              value="2022-01-01"
               required
             />
-            <button id="links__date-plus" class="links__date-plus">-</button>
-            <button id="links__date-today" class="links__date-today">
+            <button
+              id="links__date-plus"
+              class="button links__date-plus"
+            ></button>
+            <button id="links__date-today" class="button links__date-today">
               сегодня
             </button>
           </div>
           <div class="links__objects">
-            <a class="links__objects-link links__objects-link--active" href=""
-              >ТЭЦ-21, ТЭЦ-22</a
+            <button
+              class="button links__objects-link links__objects-link--active"
+              href=""
             >
-            <a class="links__objects-link" href="">ТЭЦ-6, ТЭЦ-27</a>
-            <a class="links__objects-link" href="">ТЭЦ-9, ОТЭЦ</a>
-            <a class="links__objects-link" href="">РК-1, РК-2, КРТС</a>
-            <a class="links__objects-link" href="">ОГЭС, ТГЭС, ЧГЭС</a>
+              ТЭЦ-21, ТЭЦ-22
+            </button>
+            <button class="button links__objects-link" href="">
+              ТЭЦ-6, ТЭЦ-27
+            </button>
+            <button class="button links__objects-link" href="">
+              ТЭЦ-9, ОТЭЦ
+            </button>
+            <button class="button links__objects-link" href="">
+              РК-1, РК-2, КРТС
+            </button>
+            <button class="button links__objects-link" href="">
+              ОГЭС, ТГЭС, ЧГЭС
+            </button>
           </div>
         </div>
         <div class="objects">
@@ -1243,5 +1262,6 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/equipment.js"></script>
   </body>
 </html>

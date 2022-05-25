@@ -61,6 +61,23 @@ body {
   background-color: var(--background-body);
 }
 
+input[type='checkbox'],
+input[type='radio'],
+input[type='date'],
+label {
+  cursor: pointer;
+}
+
+input[type='date'] {
+  color: var(--text-black);
+}
+
+input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
 .font--small {
   font-size: 0.75em;
 }
@@ -84,6 +101,12 @@ body {
   padding-left: 0.25em;
   padding-right: 0.25em;
   padding-bottom: 0.5em;
+}
+
+@media (max-width: 1440px) {
+  .page {
+    font-size: 14px;
+  }
 }
 
 .page--with-menubar {
