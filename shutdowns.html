@@ -1,3 +1,10 @@
+<?php
+  // пока только HTTP
+  if (!stripos($_SERVER['SERVER_NAME'], '.mogilev.energo.net')) {
+    header('Location: '. 'http://energy13.mogilev.energo.net' . $_SERVER['SCRIPT_NAME']);
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

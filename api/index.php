@@ -77,7 +77,10 @@ function getFormData($method)
   return $data;
 }
 
+
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: http://*');
+header('Access-Control-Allow-Origin: http://10.179.0.26');
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, DELETE");
 header('Access-Control-Allow-Credentials: true');
 header("Access-Control-Max-Age: 1000");

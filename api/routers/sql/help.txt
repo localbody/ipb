@@ -17,7 +17,7 @@
   GES - ГЭС
   TEC - ТЭЦ
   ByID - по коду
-  State - состояние
+  Status - состояние
   List - список
   Object - объект
   Name - наименование

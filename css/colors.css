@@ -34,7 +34,8 @@
   --energo-lightblue: rgb(240, 248, 255, 0.5);
   --energo-wheat: wheat;
 
-  --background-body: rgba(224, 224, 224, 0.1);
+  /* --background-body: gainsboro; */
+  --background-body: #e4e4ef;
 
   /* --background-blue-alpha: rgba(197, 220, 250, 0.5); */
   --background-blue-alpha: #e2edfc;

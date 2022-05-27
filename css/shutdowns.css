@@ -44,10 +44,6 @@ td {
   line-height: 1.25em;
 }
 
-.columns--expanded {
-  cursor: pointer;
-}
-
 tbody tr:last-child td {
   border-bottom: none;
 }

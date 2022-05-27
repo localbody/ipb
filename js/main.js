@@ -6,6 +6,10 @@ const popupBody = document.querySelector('.popup__body')
 const columnsExpanded = document.querySelector('.columns--expanded')
 const showAllColumns = document.getElementById('showAllColumns')
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 function dateFormat(date, format = 'YYYYMMDD') {
   let result = ''
   if (format == 'YYYYMMDD') {
@@ -15,6 +19,13 @@ function dateFormat(date, format = 'YYYYMMDD') {
       (date.getMonth() + 1).toString().padStart(2, '0') +
       '-' +
       date.getDate().toString().padStart(2, '0')
+  } else if (format == 'DDMMYYYY') {
+    result =
+      date.getDate().toString().padStart(2, '0') +
+      '.' +
+      (date.getMonth() + 1).toString().padStart(2, '0') +
+      '.' +
+      date.getFullYear().toString()
   }
 
   return result
