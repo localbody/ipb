@@ -14,49 +14,42 @@ function getData($prepareSQL, $params = [], $values = [])
 {
   $error = '';
   $result = '';
-  $json = [];
 
   //если передали параметры - заменим их в запросе
   $SQL = str_replace($params, $values, $prepareSQL);
-  $string_connect = 'Driver={SQL Server Native Client 10.0};Server=energy5;Database=ipb_cds;';
 
-  $connection = odbc_connect($string_connect, 'polzovatel', '111');
+  $connection = odbc_connect("Driver={SQL Server Native Client 10.0};Server=energy5;Database=ipb_cds;", 'polzovatel', '111');
 
-  if (odbc_error()) {
-    // $error = odbc_errormsg();
-    // тупая затычка ошибки ODBC
-    // пробуем подсоединиться еще раз
-    $connection = odbc_connect($string_connect, 'polzovatel', '111');
+  $result = odbc_exec($connection, $SQL);
+
+  try {
+    if ($result) {
+      $json = [];
+
+      // пропускаем пустые результаты
+      while (odbc_num_fields($result) == 0) {
+        odbc_next_result($result);
+      }
+
+      $id = 0; // искусственно добавим поле с ID строки - для вывода JSON в правильном порядке
+      while (odbc_fetch_row($result) ) {
+        $row = [];
+        $row['id'] = $id++;
+        for ($i = 1; $i <= odbc_num_fields($result); $i++) {
+          $value = odbc_result($result, odbc_field_name($result, $i));
+          $row[odbc_field_name($result, $i)] = gettype($value) == 'string' ? toUTF8($value) : $value;
+        }
+        $json[] = $row;
+      }
+    }
+    odbc_close($connection);
+  } catch (PDOException $e) {
+    $error = "Error!: " . $e->getMessage();
+
   }
 
-  {
-    $result = odbc_exec($connection, $SQL);
-    try {
-      if ($result) {
-        // пропускаем пустые результаты
-        while (odbc_num_fields($result) == 0) {
-          odbc_next_result($result);
-        }
-
-        $id = 0; // искусственно добавим поле с ID строки - для вывода JSON в правильном порядке
-        while (odbc_fetch_row($result) ) {
-          $row = [];
-          $row['id'] = $id++;
-          for ($i = 1; $i <= odbc_num_fields($result); $i++) {
-            $value = odbc_result($result, odbc_field_name($result, $i));
-            $row[odbc_field_name($result, $i)] = gettype($value) == 'string' ? toUTF8($value) : $value;
-          }
-          $json[] = $row;
-        }
-      }
-      odbc_close($connection);
-    } catch (PDOException $e) {
-      $error = "Error!: " . $e->getMessage();
-    }
-
-    if (count($json) == 0) {
-      $error = "Empty result";
-    }
+  if (count($json) == 0) {
+    $error = "Empty result";
   }
 
   return [$error, json_encode($json)];

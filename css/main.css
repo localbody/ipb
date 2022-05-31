@@ -71,12 +71,32 @@ label {
 
 input[type='date'] {
   color: var(--text-black);
+  position: relative;
+  /* width: 100%; */
+}
+
+input[type='date']::-webkit-textfield-decoration-container {
+  background-color: red;
+  color: var(--text-white);
 }
 
 input[type='date']::-webkit-inner-spin-button,
 input[type='date']::-webkit-calendar-picker-indicator {
-  display: none;
+  position: absolute;
+
+  /* display: none; */
   -webkit-appearance: none;
+
+  background: transparent;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  color: transparent;
+  height: auto;
+  width: auto;
 }
 
 .font--small {
