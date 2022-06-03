@@ -5,97 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/shutdowns.css" />
   </head>
   <body>
     <style>
-      .wrapper {
-        display: grid;
-        grid-template-areas:
-          'header header side'
-          'body body side'
-          'body body side'
-          'foo foo side';
-        /* grid-template-columns: 1fr 5fr; */
+      .batman {
+        background-color: #d7d9f2;
       }
 
-      @media screen and (max-width: 400px) {
-        .wrapper {
-          grid-template-areas:
-            'header header'
-            'body side'
-            'side side'
-            'foo side';
-        }
+      .flash {
+        background-color: #ffe8d4;
       }
 
-      @media screen and (max-width: 600px) {
-        .wrapper {
-          grid-template-areas:
-            'header'
-            'body'
-            'side'
-            'foo';
-        }
+      caption {
+        padding: 8px;
+        caption-side: bottom;
       }
 
-      .header {
-        grid-area: header;
-        background-color: red;
+      table {
+        border-collapse: collapse;
+        border: 2px solid rgb(100, 100, 100);
+        letter-spacing: 1px;
+        font-family: sans-serif;
+        font-size: 0.7rem;
       }
 
-      .side {
-        grid-area: side;
-        background-color: blue;
+      td,
+      th {
+        border: 1px solid rgb(100, 100, 100);
+        padding: 10px 10px;
       }
 
-      .body {
-        grid-area: body;
-        background-color: yellow;
-      }
-
-      .foo {
-        grid-area: foo;
-        background-color: green;
-      }
-
-      thead {
-        background-color: tomato;
+      td {
+        text-align: center;
       }
     </style>
 
     <div class="wrapper">
-      <h1>Text 111111</h1>
-
-      <h2 class="table-header">jkdjgfdgljfsdkl;jgsdkl</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <td
-              style="text-align: center; vertical-align: top"
-              colspan="2"
-              rowspan="2"
-            >
-              h1-h2 h11 h22 h1-h2 h11 h22h1-h2 h11
-            </td>
-            <td>h3</td>
-            <td rowspan="2" width="44%">h4 - h44</td>
-          </tr>
-          <tr>
-            <td width="50%">h33</td>
-          </tr>
-        </thead>
+      <table>
+        <caption>
+          Superheros and sidekicks
+        </caption>
+        <colgroup>
+          <col />
+          <col span="2" class="batman" />
+          <col span="2" class="flash" />
+          <col />
+          <col />
+        </colgroup>
         <tbody>
+          <thead>
+            <td></td>
+            <td>Batman</td>
+            <td>Robin</td>
+            <td>The Flash</td>
+            <td>Kid Flash</td>
+          </thead>
           <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
+            <td>Skill</td>
+            <td>Smarts</td>
+            <td>Dex, acrobat</td>
+            <td>Super speed</td>
+            <td>Super speed</td>
           </tr>
           <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
+            <td>Skill</td>
+            <td>Smarts</td>
+            <td>Dex, acrobat</td>
+            <td>Super speed</td>
+            <td>Super speed</td>
           </tr>
         </tbody>
       </table>

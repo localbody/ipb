@@ -30,8 +30,10 @@ function documentReady() {
   const popupOpener = document.querySelector('.popup__opener')
   const popupCloser = document.querySelector('.popup__closer')
   const popupBody = document.querySelector('.popup__body')
-  const columnsExpanded = document.querySelector('.columns--expanded')
-  const showAllColumns = document.getElementById('showAllColumns')
+  const columnsExpandedItems = document.querySelectorAll('.columns--expanded')
+  const showAllColumnsCheckbox = document.querySelectorAll(
+    '.show-all-columns__checkbox'
+  )
   const userAgent = navigator.userAgent.toLowerCase()
   const Mozila = /firefox/.test(userAgent)
   const Chrome = /chrome/.test(userAgent)
@@ -46,7 +48,36 @@ function documentReady() {
     })
   }
 
-  if (columnsExpanded) {
+  const toggleFullScreen = document.querySelector('#toggleFullScreen')
+
+  if (toggleFullScreen) {
+    console.log(
+      document.documentElement.clientHeight,
+      parseInt(getComputedStyle(document.querySelector('body')).fontSize)
+    )
+    toggleFullScreen.style.top =
+      document.documentElement.clientHeight -
+      toggleFullScreen.clientHeight -
+      parseInt(getComputedStyle(document.querySelector('body')).fontSize) / 2 +
+      'px'
+
+    toggleFullScreen.style.left =
+      document.documentElement.clientWidth -
+      toggleFullScreen.clientWidth -
+      parseInt(getComputedStyle(document.querySelector('body')).fontSize) / 2 +
+      'px'
+
+    toggleFullScreen.addEventListener('click', () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen()
+      } else {
+        document.documentElement.requestFullscreen()
+      }
+    })
+  }
+
+  // пробежим по списку "свернутых" колонок в таблицах и скроем их
+  columnsExpandedItems.forEach((columnsExpanded) => {
     // найдем колонки для скрытия/открытия
 
     const table = columnsExpanded.closest('table')
@@ -75,29 +106,51 @@ function documentReady() {
         if (columnsExpandedList.includes(indexTd)) td.classList.add('hide')
       })
     })
+  })
 
-    const onChangeExpanded = () => {
-      if (columnsExpanded.hasAttribute('colspan')) {
-        columnsExpanded.removeAttribute('colspan')
-      } else {
-        columnsExpanded.setAttribute('colspan', 5)
-      }
+  const onChangeShowAllCheckbox = (event) => {
+    const table = event.target.closest('table')
 
-      const tdExpanded = document.querySelectorAll('.td--expanded')
-      tdExpanded.forEach((td) => td.classList.toggle('hide'))
+    const columnsExpanded = table.querySelector('.columns--expanded')
+    const tBody = table.querySelector('tbody')
 
-      // пробежим по tbody и скроем/покажем ячейки у колонок из columnsExpandedList
-      tBody.querySelectorAll('tr').forEach((tr, indexTr) => {
+    let columnsExpandedList = []
+    table.querySelectorAll('tr').forEach((tr, indexTr) => {
+      // пройдем по первой строке
+      if (indexTr === 0) {
         tr.querySelectorAll('td').forEach((td, indexTd) => {
-          if (columnsExpandedList.includes(indexTd)) {
-            td.classList.toggle('hide')
+          if (td.classList.contains('columns--expanded')) {
+            // смотрим сколько collspan
+            td.dataset['columns']
+              .split(',')
+              .forEach((item) => columnsExpandedList.push(parseInt(item)))
           }
         })
-      })
+      }
+    })
+
+    if (columnsExpanded.hasAttribute('colspan')) {
+      columnsExpanded.removeAttribute('colspan')
+    } else {
+      columnsExpanded.setAttribute('colspan', columnsExpandedList.length + 1)
     }
 
-    showAllColumns.addEventListener('change', onChangeExpanded)
+    const tdExpanded = table.querySelectorAll('.td--expanded')
+    tdExpanded.forEach((td) => td.classList.toggle('hide'))
+
+    // пробежим по tbody и скроем/покажем ячейки у колонок из columnsExpandedList
+    tBody.querySelectorAll('tr').forEach((tr, indexTr) => {
+      tr.querySelectorAll('td').forEach((td, indexTd) => {
+        if (columnsExpandedList.includes(indexTd)) {
+          td.classList.toggle('hide')
+        }
+      })
+    })
   }
+
+  showAllColumnsCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener('change', onChangeShowAllCheckbox)
+  })
 
   if (popupOpener) {
     popupOpener.addEventListener('click', (event) => {

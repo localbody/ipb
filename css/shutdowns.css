@@ -1,17 +1,55 @@
+.page__caption {
+  font-size: 2em;
+  margin-bottom: 0.25em;
+  text-align: center;
+  white-space: nowrap;
+}
+
 table {
   border-spacing: 0;
   border-top: 1px solid var(--border-grey);
   border-bottom: 1px solid var(--border-grey);
   border-left: 1px solid var(--border-grey);
   margin-bottom: 2em;
-}
-
-table tbody tr {
+  /* фон таблице задаем здесь, иначе перебъет фон для колонок <col> */
   background-color: var(--background-white);
 }
 
+.table__caption {
+  font-size: 2em;
+  margin-bottom: 0.25em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+thead {
+  background-color: var(--table-header);
+  color: var(--text-white);
+}
+
+thead td {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.25em;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td {
+  padding: 0.25em;
+  border-bottom: 1px solid var(--border-grey);
+  border-right: 1px solid var(--border-grey);
+  line-height: 1.25em;
+}
+
 .table--fit {
-  width: fit-content;
+  width: 100%;
+}
+
+.table--fit .table__caption {
+  white-space: normal;
 }
 
 .table--fit td {
@@ -30,44 +68,16 @@ table tbody tr {
   vertical-align: middle;
 }
 
-.caption,
-table caption {
-  font-size: 2em;
-  margin-bottom: 0.25em;
-  text-align: center;
-}
-
-td {
-  padding: 0.25em;
-  border-bottom: 1px solid var(--border-grey);
-  border-right: 1px solid var(--border-grey);
-  line-height: 1.25em;
-}
-
-tbody tr:last-child td {
-  border-bottom: none;
-}
-
 .table--vertical-header tbody td:first-child {
   font-weight: bold;
-}
-
-thead {
-  background-color: var(--background-blue-alpha);
-  color: var(--white);
-}
-
-thead td {
-  text-align: center;
-  vertical-align: middle;
-  line-height: 1.25em;
 }
 
 .tr--total {
   font-weight: bold;
 }
 
-.tr--fill {
+.col--filled,
+.tr--filled {
   background-color: var(--background-green-alpha);
 }
 
@@ -90,7 +100,7 @@ thead td {
   cursor: pointer;
 }
 
-.show-all-columns input {
+.show-all-columns__checkbox {
   height: 1.25em;
   width: 1.25em;
   margin-right: 0.5em;

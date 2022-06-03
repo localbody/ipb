@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // обновить данные на странице
-  function refreshEquipmentPage(statusEquipment) {
+  function refreshEquipmentPage() {
     // скрываем все '.object'
     const objectItems = document.querySelectorAll('.object')
     objectItems.forEach((item) => {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const divObjects = document.querySelector('.objects')
 
-    function addObject(objectTitle, objectID, equipmentsList, columns = 3) {
+    function addObject(objectTitle, objectID, equipmentsList) {
       // создаем '.object'
       const divObject = document.createElement('div')
       divObject.classList.add('object', 'object--show')
@@ -56,11 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
       //
       const divEquipmentsItems = document.createElement('div')
       divEquipmentsItems.classList.add('equipments-items')
-      if (columns == 3) {
-        divEquipmentsItems.classList.add('equipments-items--three-columns')
-      } else {
+
+      if (equipmentsList.length === 1) {
+        divEquipmentsItems.classList.add('equipments-items--one-columns')
+      } else if (equipmentsList.length === 2) {
         divEquipmentsItems.classList.add('equipments-items--two-columns')
+      } else {
+        divEquipmentsItems.classList.add('equipments-items--three-columns')
       }
+
       divObject.insertAdjacentElement('beforeend', divEquipmentsItems)
 
       equipmentsList.forEach((item) => {
@@ -71,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //
         const spanEquipmentsTitle = document.createElement('span')
         spanEquipmentsTitle.classList.add('equipments__title')
-        spanEquipmentsTitle.innerHTML = `<span>${objectTitle}.&nbsp;</span>${equipmentsTitle}`
+        spanEquipmentsTitle.innerHTML = `<span class="equipments__title-object">${objectTitle}.</span><span>${equipmentsTitle}</span><div class="loader loader--equipments"><div></div><div></div><div></div></div>`
         divEquipments.insertAdjacentElement('beforeend', spanEquipmentsTitle)
         //
         const divEquipmentsHeader = document.createElement('div')
@@ -97,6 +101,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 'equipment',
                 'equipment--status-' + STATUS[item.statusName]
               )
+
+              // если смотрим ТЕКУЩЕЕ СОСТОЯНИЕ
+              // костыль: нужно проверить что дата окончания состояния не меньше текущей даты и времени
+              // если меньше - то это просроченное состояние - пометим его .equipment--status-overdue
+              if (
+                item.dateTimeEnd != '' &&
+                dateFormat(reportDate) == dateFormat(today)
+              ) {
+                const dateTimeEnd = new Date()
+                dateTimeEnd.setYear(item.dateTimeEnd.substr(6, 4))
+                dateTimeEnd.setMonth(item.dateTimeEnd.substr(3, 2) - 1)
+                dateTimeEnd.setDate(item.dateTimeEnd.substr(0, 2))
+                dateTimeEnd.setHours(item.dateTimeEnd.substr(11, 2))
+                dateTimeEnd.setMinutes(item.dateTimeEnd.substr(14, 2))
+                dateTimeEnd.setSeconds(0)
+
+                if (dateTimeEnd.getTime() < today.getTime()) {
+                  divEquipment.classList.add('equipment--status-overdue')
+                }
+              }
 
               divEquipment.innerHTML = `<div class="equipment__id">
                                           <span class="equipment__id-text">${
@@ -130,9 +154,34 @@ document.addEventListener('DOMContentLoaded', () => {
                                           </div>
                                         </div>`
               divEquipments.insertAdjacentElement('beforeend', divEquipment)
+              divEquipments
+                .querySelector('.loader')
+                .classList.add('transparent')
             })
           })
           .catch(() => {})
+      })
+    }
+
+    function wrapLastTwoEquipment() {
+      // костыль - обернем два последних блока .equipments-items в wrapper
+      const equipmentsItemsList = document.querySelectorAll('.equipments-items')
+      equipmentsItemsList.forEach((item) => {
+        const equipmentsList = item.querySelectorAll('.equipments')
+
+        const equipmentsPenultimate = equipmentsList[equipmentsList.length - 2]
+        const equipmentsLast = equipmentsList[equipmentsList.length - 1]
+
+        equipmentsPenultimate.remove()
+        equipmentsLast.remove()
+
+        const divWrapper = document.createElement('div')
+        divWrapper.classList.add('wrapper')
+        divWrapper.classList.add('wrapper--equipments')
+
+        divWrapper.insertAdjacentElement('beforeend', equipmentsPenultimate)
+        divWrapper.insertAdjacentElement('beforeend', equipmentsLast)
+        item.insertAdjacentElement('beforeend', divWrapper)
       })
     }
 
@@ -162,34 +211,29 @@ document.addEventListener('DOMContentLoaded', () => {
       // сделаем два объекта на одной странице
       //
       divObjects.classList.add('objects--two-objects')
-      addObject(
-        'ТЭЦ-6',
-        3,
-        [
-          {equipmentsName: 'котлы паровые', equipmentsList: '1,13'},
-          {equipmentsName: 'турбогенераторы', equipmentsList: '3'},
-          {equipmentsName: 'газотурбинные установки', equipmentsList: '6'},
-          {
-            equipmentsName: 'котлы водогрейные',
-            equipmentsList: '2',
-          },
-        ],
-        2
-      )
-      addObject(
-        'ТЭЦ-27',
-        7,
-        [
-          {equipmentsName: 'котлы паровые', equipmentsList: '1,13'},
-          {equipmentsName: 'турбогенераторы', equipmentsList: '3'},
-          {equipmentsName: 'газотурбинные установки', equipmentsList: '6'},
-          {
-            equipmentsName: 'котлы водогрейные',
-            equipmentsList: '2',
-          },
-        ],
-        2
-      )
+      addObject('ТЭЦ-6', 3, [
+        {equipmentsName: 'котлы паровые', equipmentsList: '1,13'},
+        {equipmentsName: 'турбогенераторы', equipmentsList: '3'},
+        {equipmentsName: 'газотурбинные установки', equipmentsList: '6'},
+        {
+          equipmentsName: 'котлы водогрейные',
+          equipmentsList: '2',
+        },
+      ])
+      addObject('ТЭЦ-27', 7, [
+        {equipmentsName: 'котлы паровые', equipmentsList: '1,13'},
+        {equipmentsName: 'турбогенераторы', equipmentsList: '3'},
+        {equipmentsName: 'газотурбинные установки', equipmentsList: '6'},
+        {
+          equipmentsName: 'котлы водогрейные',
+          equipmentsList: '2',
+        },
+      ])
+      // костыль - обернем два последних блока .equipments-items в wrapper
+      // если экран больше 1440
+      if (window.innerWidth > 1440) {
+        wrapLastTwoEquipment()
+      }
     } else if (objectsList == 'ТЭЦ-9, ОТЭЦ') {
       // сделаем два объекта на одной странице
       divObjects.classList.add('objects--two-objects')

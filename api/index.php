@@ -20,13 +20,19 @@ function getData($prepareSQL, $params = [], $values = [])
   $SQL = str_replace($params, $values, $prepareSQL);
   $string_connect = 'Driver={SQL Server Native Client 10.0};Server=energy5;Database=ipb_cds;';
 
-  $connection = odbc_connect($string_connect, 'polzovatel', '111');
+  $connection = @odbc_connect($string_connect, 'polzovatel', '111');
 
-  if (odbc_error()) {
+  $attempts = 0;
+
+  while (odbc_error() and $attempts < 7) {
     // $error = odbc_errormsg();
     // тупая затычка ошибки ODBC
     // пробуем подсоединиться еще раз
-    $connection = odbc_connect($string_connect, 'polzovatel', '111');
+    // ставим паузу
+    // sleep($attempts);
+    sleep(1);
+    $connection = @odbc_connect($string_connect, 'polzovatel', '111');
+    ++$attempts;
   }
 
   {
