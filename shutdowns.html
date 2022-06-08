@@ -9,8 +9,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="favicon.svg" />
+    <meta
+      name="viewport"
+      content="user-scalable=yes, width=device-width, initial-scale=1.0"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/images/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -438,7 +467,7 @@
               <td>1 ст. ДЗ, 1 ст. ТО НП</td>
               <td>АПВ успешное</td>
               <td>ф:A 10,57км.</td>
-              <td>ПС Литейная (ОАО "Могилевлифтмаш"), включение КЗ Т-2чё</td>
+              <td>ПС Литейная (ОАО "Могилевлифтмаш"), включение КЗ Т-2</td>
               <td>Повр. на потребит. участке ВЛ</td>
               <td>1</td>
               <td></td>
@@ -492,7 +521,7 @@
           </tbody>
         </table>
 
-        <table class="table table--centered-data">
+        <table class="table table--centered-data" hidden>
           <caption class="table__caption">
             Аварийные отключения теплотехнического оборудования
           </caption>
@@ -504,7 +533,7 @@
           </tbody>
         </table>
 
-        <table class="table table--centered-data">
+        <table class="table table--centered-data" hidden>
           <caption class="table__caption">
             Аварийные отключения в тепловой сети
           </caption>
@@ -1027,8 +1056,21 @@
 
         <table class="table table--centered-data">
           <caption class="table__caption">
-            Аварийные отключения в распредсетях
-          </caption>
+            <div class="wrapper wrapper--flex-center">
+              <span
+                >Аварийные отключения в распредсетях</span
+              >
+              <div class="show-all-columns">
+                <input
+                  class="show-all-columns__checkbox"
+                  id="showAllDistribution Network"
+                  type="checkbox"
+                />
+                <label class="show-all-columns__label" for="showAllDistribution Network"
+                  >показать все данные</label
+                >
+              </div>
+            </div>
           <thead>
             <tr>
               <td rowspan="2">#</td>
@@ -1043,7 +1085,7 @@
               <td rowspan="2">Поврежденный участок</td>
               <td rowspan="2">Причина</td>
               <td rowspan="2">ТП</td>
-              <td colspan="5">НП</td>
+              <td data-columns="16, 17, 18, 19" class="columns--expanded">НП</td>
               <td rowspan="2">Ферм</td>
               <td rowspan="2">КЗС</td>
               <td rowspan="2">АВМ</td>
@@ -1055,24 +1097,24 @@
               <td rowspan="2">Примечание</td>
             </tr>
             <tr>
-              <td>отключения</td>
-              <td>включения</td>
-              <td>включения всех потребителей</td>
+              <td class="font--small">отключения</td>
+              <td class="font--small">включения</td>
+              <td class="font--small">включения всех потребителей</td>
               <td>сумма</td>
-              <td>до&nbsp;50</td>
-              <td>от&nbsp;50 до&nbsp;200</td>
-              <td>от&nbsp;200 до&nbsp;1000</td>
-              <td>от&nbsp;1000</td>
+              <td class="td--expanded hide">до&nbsp;50</td>
+              <td class="td--expanded hide">от&nbsp;50 до&nbsp;200</td>
+              <td class="td--expanded hide">от&nbsp;200 до&nbsp;1000</td>
+              <td class="td--expanded hide">от&nbsp;1000</td>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>БЭС<br />БГРЭС</td>
-              <td>25.04.22 18:15</td>
+              <td>БЭС<br /><span class="font--small">БГРЭС</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">18:15</span></td>
               <td></td>
-              <td>25.04.22 20:30</td>
-              <td>Кривой Крюк<br />ВМ-10 на РП(ТП) 614 Откл. 1-й раз</td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:30</span></td>
+              <td>Кривой Крюк<br /><span class="font--small">ВМ-10 на РП(ТП) 614 Откл. 1-й раз</span></td>
               <td>ТО</td>
               <td>от ПС 110 до ТП 614 Б</td>
               <td>Повреждение КЛ</td>
@@ -1094,11 +1136,11 @@
             </tr>
             <tr>
               <td>2</td>
-              <td>КЭС<br />Костюковичский</td>
-              <td>25.04.22 18:43</td>
-              <td>25.04.22 19:09</td>
-              <td>25.04.22 20:45</td>
-              <td>Костюковичи ВМ-10 КЛ- 501 Откл. 1-й раз</td>
+              <td>КЭС<br /><span class="font--small">Костюковичский</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">19:09</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">18:43</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:45</span></td>
+              <td>Костюковичи<br><span class="font--small">ВМ-10 КЛ- 501 Откл. 1-й раз</span></td>
               <td>ОЗЗ</td>
               <td>КТП6413</td>
               <td>Повреждение РВП</td>
@@ -1121,9 +1163,9 @@
             <tr>
               <td></td>
               <td>КЭС</td>
-              <td>25.04.22 19:09</td>
-              <td>25.04.22 20:16</td>
-              <td>25.04.22 20:45</td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">19:09</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:16</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:45</span></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1147,9 +1189,9 @@
             <tr>
               <td></td>
               <td>КЭС</td>
-              <td>25.04.22 20:16</td>
-              <td>25.04.22 20:45</td>
-              <td>25.04.22 20:45</td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:16</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:45</span></td>
+              <td class="datetime"><span class="date">25.04.22</span><span class="time">20:45</span></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1172,11 +1214,11 @@
             </tr>
             <tr>
               <td>3</td>
-              <td>БЭС<br />БГРЭС</td>
-              <td>23.04.22 19:45</td>
-              <td></td>
-              <td>23.04.22 19:45</td>
-              <td>Ленинская35<br />ВМ-6 на РП(ТП) 28 Откл. 1-й раз</td>
+              <td>БЭС<br /><span class="font--small">БГРЭС</span></td>
+              <td class="datetime"><span class="date">23.04.22</span><span class="time">19:45</span></td>
+              <td class="datetime"></td>
+              <td class="datetime"><span class="date"></span>23.04.22<span class="time"></span>19:45</td>
+              <td>Ленинская35<br /><span class="font--small">ВМ-6 на РП(ТП) 28 Откл. 1-й раз</span></td>
               <td>Земля, Отключен вручную</td>
               <td>головной до РП 28</td>
               <td>Повр. на потребит. КЛ</td>
@@ -1200,8 +1242,10 @@
         </table>
       </div>
     </div>
-    <div id="toggleFullScreen"></div>
+    <div id="toggleFullScreen" style="display:none; visibility: hidden;"></div>
 
+    <script src="js/mobile-detect.min.js"></script>
     <script src="js/main.js"></script>
+
   </body>
 </html>

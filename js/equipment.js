@@ -207,6 +207,13 @@ document.addEventListener('DOMContentLoaded', () => {
           equipmentsList: '2,12',
         },
       ])
+      // костыль - обернем два последних блока .equipments-items в wrapper
+      // если экран меньше 1280
+      if (window.innerWidth <= 1280) {
+        wrapLastTwoEquipment()
+      }
+      // костыль - обернем два последних блока .equipments-items в wrapper
+      // если экран меньше 960
     } else if (objectsList == 'ТЭЦ-6, ТЭЦ-27') {
       // сделаем два объекта на одной странице
       //

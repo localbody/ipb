@@ -1,0 +1,769 @@
+<?php
+  // пока только HTTP
+  if (!stripos($_SERVER['SERVER_NAME'], '.mogilev.energo.net')) {
+    header('Location: '. 'http://energy13.mogilev.energo.net' . $_SERVER['SCRIPT_NAME']);
+  }
+?>
+
+<!DOCTYPE html>
+<html lang="RU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="user-scalable=yes, width=device-width, initial-scale=1.0"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/images/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/equipment.css" />
+    <title>Оперативное состояние оборудования теплоисточников и ГЭС</title>
+  </head>
+
+  <body>
+    <style>
+      .grid {
+        background: #eee;
+        max-width: 100%;
+      }
+      .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    </style>
+
+    <div class="page page--with-menubar">
+      <div class="menubar">
+        <a href="../" class="logo"></a>
+        <h1 class="menubar__title">
+          Оперативное состояние оборудования теплоисточников и ГЭС
+        </h1>
+        <button class="button popup__opener"></button>
+
+        <div class="popup">
+          <div class="popup__body">
+            <div class="popup__content">
+              <button class="button popup__closer"></button>
+              <div class="report">
+                <div class="report__period">
+                  <span>Дата</span>
+                  <input type="date" value="2022-01-01" />
+                </div>
+
+                <div class="report__params report__param--equipment">
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param1"
+                      checked
+                    />
+                    <label class="report__param-label" for="param1"
+                      >ТЭЦ-21, ТЭЦ-22</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param2"
+                    />
+                    <label class="report__param-label" for="param2"
+                      >ТЭЦ-6, ТЭЦ-27</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param3"
+                    />
+                    <label class="report__param-label" for="param3"
+                      >ТЭЦ-9, ОТЭЦ</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param4"
+                    />
+                    <label class="report__param-label" for="param4"
+                      >РК-1, РК-2, КРТС</label
+                    >
+                  </div>
+                  <div class="report__param">
+                    <input
+                      class="report__param-radio"
+                      type="radio"
+                      name="param"
+                      id="param5"
+                    />
+                    <label class="report__param-label" for="param5"
+                      >ОГЭС, ТГЭС, ЧГЭС</label
+                    >
+                  </div>
+                </div>
+
+                <button class="button report__button">Показать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main main--equipment">
+        <div class="links">
+          <div class="links__date-controls">
+            <div class="wrapper wrapper--links-controls">
+              <button
+                id="links__date-minus"
+                class="button links__date-minus"
+              ></button>
+              <input
+                id="links__date-input-main"
+                class="links__date-input"
+                type="date"
+              />
+              <button
+                id="links__date-plus"
+                class="button links__date-plus"
+              ></button>
+            </div>
+            <button
+              id="links__date-today"
+              class="button links__date-today button links__date-today--active"
+            >
+              текущее состояние
+            </button>
+          </div>
+          <div class="links__objects">
+            <button
+              class="button links__objects-link links__objects-link--active"
+              data-objects="1,2"
+            >
+              ТЭЦ-21, ТЭЦ-22
+            </button>
+            <button class="button links__objects-link" data-objects="3, 7">
+              ТЭЦ-6, ТЭЦ-27
+            </button>
+            <button class="button links__objects-link" data-objects="4, 9">
+              ТЭЦ-9, ОТЭЦ
+            </button>
+            <button class="button links__objects-link" data-objects="5, 6, 30">
+              РК-1, РК-2, КРТС
+            </button>
+            <button
+              class="button links__objects-link"
+              data-objects="11, 12, 13"
+            >
+              ОГЭС, ТГЭС, ЧГЭС
+            </button>
+          </div>
+        </div>
+
+        <div class="objects objects--two-objects">
+          <div class="object object--show">
+            <h2 class="object__title">ТЭЦ-6</h2>
+            <div
+              data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300 }'
+              class="grid equipments-items1"
+            >
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-6.</span
+                  ><span>Котлы паровые</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1У</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">26.05.2022</span>
+                        <span class="hour-minutes">22:30</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">5</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">26.05.2022</span>
+                        <span class="hour-minutes">22:47</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">6</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">29.04.2022</span>
+                        <span class="hour-minutes">13:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">7</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">27.05.2022</span>
+                        <span class="hour-minutes">08:55</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">8</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">10.05.2022</span>
+                        <span class="hour-minutes">23:30</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">9</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">29.04.2022</span>
+                        <span class="hour-minutes">09:45</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">10</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">27.05.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-6.</span
+                  ><span>Турбогенераторы</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">23.05.2022</span>
+                        <span class="hour-minutes">19:55</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">3</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">29.04.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">4</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">07.05.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">5</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">21.05.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-6.</span
+                  ><span>Газотурбинные установки</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">6</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">26.05.2022</span>
+                        <span class="hour-minutes">21:39</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-6.</span
+                  ><span>Котлы водогрейные</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-conservation">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">на консервации</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">14.05.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">30.09.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-conservation">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">2</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">на консервации</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">14.05.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">30.09.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="object object--show">
+            <h2 class="object__title">ТЭЦ-27</h2>
+            <div
+              data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 260 }'
+              class="grid equipments-items"
+            >
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-27.</span
+                  ><span>Котлы паровые</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1У</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">20.12.2021</span>
+                        <span class="hour-minutes">20:05</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-conservation">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">2У</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">на консервации</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">25.02.2022</span>
+                        <span class="hour-minutes">17:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">15.07.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">4</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">29.04.2022</span>
+                        <span class="hour-minutes">16:25</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-reserve">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">5</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в резерве</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">29.04.2022</span>
+                        <span class="hour-minutes">17:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-27.</span
+                  ><span>Турбогенераторы</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">3</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">25.08.2021</span>
+                        <span class="hour-minutes">00:50</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-27.</span
+                  ><span>Газотурбинные установки</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-work">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">в работе</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">18.02.2022</span>
+                        <span class="hour-minutes">12:18</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date"></span>
+                        <span class="hour-minutes"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-repair">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">2</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text"
+                      >капитальный ремонт</span
+                    >
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">01.08.2021</span>
+                        <span class="hour-minutes">00:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">15.07.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipments grid-item">
+                <span class="equipments__title"
+                  ><span class="equipments__title-object">ТЭЦ-27.</span
+                  ><span>Котлы водогрейные</span>
+                  <div class="loader loader--equipments transparent">
+                    <div></div>
+                    <div></div>
+                    <div></div></div
+                ></span>
+                <div class="equipments__header">
+                  <span>№</span><span>Состояние</span>
+                </div>
+                <div class="equipment equipment--status-conservation">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">1</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">на консервации</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">30.05.2022</span>
+                        <span class="hour-minutes">20:20</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">30.09.2022</span>
+                        <span class="hour-minutes">17:00</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="equipment equipment--status-repair">
+                  <div class="equipment__id">
+                    <span class="equipment__id-text">2</span>
+                  </div>
+                  <div class="equipment__status">
+                    <span class="equipment__status-text">текущий ремонт</span>
+                    <div class="equipment__status-period">
+                      <div class="equipment__status-start">
+                        <span class="date">06.06.2022</span>
+                        <span class="hour-minutes">00:00</span>
+                      </div>
+                      <span class="equipment--period-arrow"></span>
+                      <span class="equipment__status-end">
+                        <span class="date">10.06.2022</span>
+                        <span class="hour-minutes">23:59</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toggleFullScreen"></div>
+
+    <script src="js/mobile-detect.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script src="js/equipment.js"></script> -->
+  </body>
+</html>

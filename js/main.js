@@ -25,6 +25,23 @@ function dateFormat(date, format = 'YYYYMMDD') {
 document.addEventListener('DOMContentLoaded', documentReady)
 
 function documentReady() {
+  document.firstElementChild.style.zoom = 'reset'
+
+  // при скроле
+  window.addEventListener('scroll', () => {
+    setPositionToggleFullScreen()
+  })
+
+  // при изменении размера и ориентации
+  window.addEventListener('resize', () => {
+    setPositionToggleFullScreen()
+  })
+
+  const mobileDetect = new MobileDetect(window.navigator.userAgent)
+  const isMobile = Boolean(
+    mobileDetect.tablet() || mobileDetect.mobile() || mobileDetect.phone()
+  )
+
   const body = document.querySelector('body')
   const popup = document.querySelector('.popup')
   const popupOpener = document.querySelector('.popup__opener')
@@ -41,7 +58,7 @@ function documentReady() {
   const Opera = /opera/.test(userAgent)
 
   // если найдем input[type='date'] - для firefox добавим required - это скроет кнопку отмены ввода даты
-  if (Mozila) {
+  if (true) {
     const dateInputs = document.querySelectorAll('input[type="date"]')
     dateInputs.forEach((dateInput) => {
       dateInput.setAttribute('required', true)
@@ -51,21 +68,29 @@ function documentReady() {
   const toggleFullScreen = document.querySelector('#toggleFullScreen')
 
   if (toggleFullScreen) {
-    console.log(
-      document.documentElement.clientHeight,
-      parseInt(getComputedStyle(document.querySelector('body')).fontSize)
-    )
-    toggleFullScreen.style.top =
-      document.documentElement.clientHeight -
-      toggleFullScreen.clientHeight -
-      parseInt(getComputedStyle(document.querySelector('body')).fontSize) / 2 +
-      'px'
+    if (isMobile) {
+      // покажем кнопку для fullscreen
+      toggleFullScreen.style.display = 'block'
+    }
 
-    toggleFullScreen.style.left =
-      document.documentElement.clientWidth -
-      toggleFullScreen.clientWidth -
-      parseInt(getComputedStyle(document.querySelector('body')).fontSize) / 2 +
-      'px'
+    function setPositionToggleFullScreen() {
+      toggleFullScreen.style.position = 'fixed'
+      toggleFullScreen.style.top =
+        document.documentElement.clientHeight -
+        toggleFullScreen.clientHeight -
+        parseInt(getComputedStyle(document.querySelector('body')).fontSize) /
+          2 +
+        'px'
+
+      toggleFullScreen.style.left =
+        document.documentElement.clientWidth -
+        toggleFullScreen.clientWidth -
+        parseInt(getComputedStyle(document.querySelector('body')).fontSize) /
+          2 +
+        'px'
+    }
+
+    setPositionToggleFullScreen()
 
     toggleFullScreen.addEventListener('click', () => {
       if (document.fullscreenElement) {

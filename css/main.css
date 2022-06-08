@@ -39,6 +39,14 @@ html {
   outline: none;
 }
 
+*:focus,
+*::after:focus,
+*::before:focus,
+body:focus,
+html:focus {
+  outline: none;
+}
+
 body,
 html {
   max-width: 100%;
@@ -121,6 +129,7 @@ input[type='date'] {
   position: relative;
   /* width: 100%; */
 }
+}
 
 input[type='date']::-webkit-textfield-decoration-container {
   background-color: red;
@@ -131,7 +140,7 @@ input[type='date']::-webkit-inner-spin-button,
 input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
 
-  /* display: none; */
+  display: none;
   -webkit-appearance: none;
 
   background: transparent;
@@ -177,17 +186,12 @@ input[type='date']::-webkit-calendar-picker-indicator {
   height: 100%;
 }
 
-@media (max-width: 1440px) {
-  .page {
-    font-size: 14px;
-  }
-}
-
 .page--with-menubar {
   padding-top: calc(var(--menubar-height) + 0.5em);
 }
 
 #toggleFullScreen {
+  /* display: none; */
   width: 3em;
   height: 3em;
   position: fixed;
@@ -318,6 +322,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .popup__opener {
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
@@ -368,6 +373,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .report__period {
+  font-size: 1.5em;
   display: flex;
   gap: 0.5em;
   align-items: center;

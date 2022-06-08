@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/shutdowns.css" />
+  </head>
+  <body>
+    <style>
+      .grid {
+        width: 50%;
+        background-color: tomato;
+      }
+
+      .grid-item {
+        width: 200px;
+        border: 1px solid black;
+        /* margin: 10px; */
+      }
+    </style>
+
+    <input type="date" />
+    <input type="time" />
+    <input type="datetime-local" />
+    <input type="month" />
+
+    <div class="page">
+      <div class="grid">
+        <div class="grid-item">
+          1. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          Necessitatibus voluptatibus ratione cupiditate pariatur ad labore
+          animi sint velit, aut, repellendus ut illo iste in ipsam dolore
+          incidunt delectus, non assumenda!
+        </div>
+        <div class="grid-item">
+          2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quas
+          possimus quos, doloremque quisquam ullam, repudiandae eos odit omnis,
+          nam quasi nemo deserunt temporibus necessitatibus. Nihil debitis dicta
+          officia quidem perferendis eveniet, aut rem? Perspiciatis voluptate
+          dolores similique vero! Nostrum inventore veritatis vitae soluta est
+          animi modi? Obcaecati temporibus laudantium reprehenderit quaerat
+          quis? Ipsam voluptate amet saepe? Quisquam voluptas cupiditate autem
+          qui saepe incidunt esse, ipsum amet adipisci laudantium velit earum
+          nostrum atque voluptatum explicabo necessitatibus. Accusantium a
+          quisquam officia quam nostrum qui natus aliquam sunt quos adipisci.
+          Quo voluptatem quis accusamus nam suscipit provident minima
+          repudiandae, enim molestiae consequuntur.
+        </div>
+        <div class="grid-item">
+          3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum
+          corporis, ipsa nihil aspernatur cumque commodi autem repellat deleniti
+          neque voluptates eius eaque ullam illo ducimus suscipit deserunt
+          dolore error sit?
+        </div>
+        <div class="grid-item">
+          4. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga,
+          dolore? Earum, quam voluptas iusto voluptate tenetur culpa cupiditate
+          hic. Illo dolore nostrum corporis in quae, hic laboriosam voluptatibus
+          ipsum recusandae. Itaque placeat officiis repellendus sunt enim
+          obcaecati impedit illo nihil.
+        </div>
+        <div class="grid-item">
+          5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+          vero harum illum, necessitatibus consectetur ipsam ea cupiditate vitae
+          facere corporis commodi, maxime fuga dolorem est nobis debitis
+          quibusdam sed. Reprehenderit doloremque ullam fugiat perferendis
+          consequatur asperiores aliquid maiores distinctio sint nesciunt! Ex
+          distinctio iste repellendus.
+        </div>
+      </div>
+    </div>
+
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script>
+      var elem = document.querySelector('.grid')
+      var masonry = new Masonry(elem, {
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 200,
+        gutter: 0,
+      })
+    </script>
+  </body>
+</html>
